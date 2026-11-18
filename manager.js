@@ -611,6 +611,9 @@
         if (item.paused) {
           return `${recStr} / ${totStr}, Duraklatıldı`;
         }
+        if (item.bytesReceived >= item.totalBytes) {
+          return `${totStr} • Doğrulanıyor…`;
+        }
         let etaSec = 0;
         if (spd > 0) {
           etaSec = (item.totalBytes - item.bytesReceived) / spd;
@@ -889,6 +892,9 @@
 
       const existing = itemsById.get(item.id);
       if (existing) {
+        if (existing.state === 'complete' || existing.state === 'interrupted') {
+          continue;
+        }
         Object.assign(existing, item);
       } else {
         allItems.unshift(item);
@@ -898,6 +904,8 @@
     }
 
     if (mutatedList) sortItemsList(allItems);
+    const anyStillActive = allItems.some((i) => i.state === 'in_progress');
+    syncFallbackPolling(anyStillActive);
     renderList(false);
   }
 
