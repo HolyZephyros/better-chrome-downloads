@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İndirilenler</title>
+  <link rel="stylesheet" href="manager.css" />
+</head>
+<body>
+  <div id="app" class="cr-app">
+
+    <!-- POPUP HEADER (1:1 Chrome Download Bubble Header) -->
+    <header id="popupHeader" class="bubble-header">
+      <div class="bubble-title-group">
+        <h1 class="bubble-title">Son indirmeler</h1>
+        <span id="bubbleLiveSub" class="bubble-subtitle hidden"></span>
+      </div>
+      <div class="bubble-header-actions">
+        <button id="btnTogglePopupSearch" class="cr-icon-btn" title="Ara ve filtrele">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+        <button id="btnPopupNewDl" class="cr-icon-btn" title="Bağlantıdan yeni indirme başlat">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        </button>
+        <button id="btnPopupMore" class="cr-icon-btn" title="Diğer işlemler">
+          <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </button>
+        <button id="btnPopupClose" class="cr-icon-btn" title="Kapat">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- TAB HEADER (1:1 chrome://downloads cr-toolbar) -->
+    <header id="tabHeader" class="cr-toolbar hidden">
+      <div class="cr-toolbar-left">
+        <img src="icons/icon48.png" alt="" class="cr-page-logo" />
+        <h1 class="cr-page-title">İndirilenler</h1>
+      </div>
+
+      <div class="cr-toolbar-center">
+        <div class="cr-search-pill">
+          <svg class="cr-search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input id="tabSearchInput" type="text" placeholder="İndirilenlerde ara" autocomplete="off" />
+          <button id="btnClearTabSearch" class="cr-icon-btn small hidden" title="Aramayı temizle">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="cr-toolbar-right">
+        <button id="btnTabNewDl" class="cr-tonal-btn">Yeni indirme</button>
+        <button id="btnTabFolder" class="cr-icon-btn" title="İndirilenler klasörünü aç">
+          <svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+        </button>
+        <button id="btnTabMore" class="cr-icon-btn" title="Diğer işlemler">
+          <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Collapsible Search & Filter Panel for Popup / Always visible chips in Tab -->
+    <section id="filterSection" class="filter-section hidden">
+      <div id="popupSearchWrap" class="popup-search-wrap">
+        <div class="cr-search-pill compact">
+          <svg class="cr-search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input id="popupSearchInput" type="text" placeholder="İndirilenlerde ara" autocomplete="off" />
+          <button id="btnClearPopupSearch" class="cr-icon-btn small hidden" title="Temizle">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="categoryBar" class="cr-chips-bar">
+        <button class="cr-chip active" data-cat="all">Tümü</button>
+        <button class="cr-chip" data-cat="active">Aktif</button>
+        <button class="cr-chip" data-cat="archive">Arşiv</button>
+        <button class="cr-chip" data-cat="app">Uygulama</button>
+        <button class="cr-chip" data-cat="media">Medya</button>
+        <button class="cr-chip" data-cat="image">Görsel</button>
+        <button class="cr-chip" data-cat="doc">Belge</button>
+      </div>
+    </section>
+
+    <!-- Collapsible New URL Download Bar -->
+    <section id="newDownloadDrawer" class="new-dl-box hidden">
+      <div class="new-dl-inner">
+        <div class="new-dl-head">
+          <span>Bağlantıdan indir</span>
+          <button id="btnCloseNewDl" class="cr-icon-btn small" title="Kapat">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+        <textarea id="newDlUrls" rows="2" placeholder="https://ornek.com/dosya.zip (birden fazla satır eklenebilir)"></textarea>
+        <div class="new-dl-foot">
+          <input id="newDlFilename" type="text" placeholder="İsteğe bağlı dosya adı" />
+          <button id="btnStartNewDl" class="cr-filled-btn">İndir</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Scrollable Content -->
+    <main id="mainViewport" class="main-viewport">
+      <div id="downloadsList" class="downloads-container"></div>
+
+      <div id="emptyState" class="cr-empty hidden">
+        <svg class="cr-empty-icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        <p id="emptyTitle" class="cr-empty-text">İndirdiğiniz dosyalar burada görünür</p>
+      </div>
+    </main>
+
+    <!-- POPUP FOOTER (1:1 Chrome Download Bubble Footer) -->
+    <footer id="popupFooter" class="bubble-footer">
+      <button id="btnShowAllHistory" class="bubble-footer-btn">
+        <span>Tüm indirme geçmişini göster</span>
+        <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      </button>
+    </footer>
+
+    <!-- Top-level More Menu (cr-action-menu) -->
+    <div id="globalMenu" class="cr-menu hidden">
+      <button data-gact="open-folder" class="cr-menu-item">İndirilenler klasörünü aç</button>
+      <div class="cr-menu-hr"></div>
+      <button data-gact="clean-completed" class="cr-menu-item">Tamamlananları listeden temizle</button>
+      <button data-gact="clean-missing" class="cr-menu-item">Silinmiş dosyaları listeden temizle</button>
+      <button data-gact="clean-failed" class="cr-menu-item">İptal ve hatalı olanları temizle</button>
+      <button data-gact="clean-all" class="cr-menu-item">Tümünü temizle</button>
+      <div class="cr-menu-hr"></div>
+      <button data-gact="open-settings" class="cr-menu-item">Ayarlar</button>
+    </div>
+
+    <!-- Per-Item Action / Right-Click Menu (cr-action-menu) -->
+    <div id="itemMenu" class="cr-menu hidden">
+      <button data-iact="open-file" class="cr-menu-item">Dosyayı aç</button>
+      <button data-iact="show-folder" class="cr-menu-item">Klasörde göster</button>
+      <div class="cr-menu-hr"></div>
+      <button data-iact="copy-url" class="cr-menu-item">İndirme bağlantısını kopyala</button>
+      <button data-iact="copy-referrer" class="cr-menu-item">Kaynak sayfa bağlantısını kopyala</button>
+      <button data-iact="open-referrer" class="cr-menu-item">Kaynak sayfayı yeni sekmede aç</button>
+      <button data-iact="copy-path" class="cr-menu-item">Dosya yolunu kopyala</button>
+      <div class="cr-menu-hr"></div>
+      <button data-iact="retry" class="cr-menu-item">Tekrar indir</button>
+      <button data-iact="erase" class="cr-menu-item">Listeden kaldır</button>
+      <button data-iact="delete-disk" class="cr-menu-item cr-danger-item">Dosyayı diskten sil</button>
+    </div>
+
+    <!-- Chrome GM3 Dialog: Delete File Confirmation -->
+    <div id="deleteDialog" class="cr-dialog-backdrop hidden">
+      <div class="cr-dialog">
+        <h2 class="cr-dialog-title">Dosya diskten silinsin mi?</h2>
+        <p id="deleteDialogDesc" class="cr-dialog-body"></p>
+        <div class="cr-dialog-actions">
+          <button id="btnCancelDelete" class="cr-outline-btn">İptal</button>
+          <button id="btnConfirmDelete" class="cr-filled-btn danger">Sil</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chrome GM3 Dialog: Settings -->
+    <div id="settingsModal" class="cr-dialog-backdrop hidden">
+      <div class="cr-dialog wide">
+        <div class="cr-dialog-head">
+          <h2 class="cr-dialog-title">İndirme ayarları</h2>
+          <button id="btnCloseSettings" class="cr-icon-btn small" title="Kapat">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+
+        <div class="cr-settings-list">
+          <label class="cr-setting-row">
+            <div class="cr-setting-text">
+              <span>Chrome'un varsayılan indirme balonunu gizle</span>
+              <small>Yalnızca bu indirme penceresi kullanılır</small>
+            </div>
+            <input type="checkbox" id="chkHideNative" class="cr-switch" />
+          </label>
+
+          <label class="cr-setting-row">
+            <div class="cr-setting-text">
+              <span>Araç çubuğu simgesinde ilerleme yüzdesini göster</span>
+              <small>Aktif indirmelerde simge üzerinde yüzde görünür</small>
+            </div>
+            <input type="checkbox" id="chkShowBadge" class="cr-switch" />
+          </label>
+
+          <label class="cr-setting-row">
+            <div class="cr-setting-text">
+              <span>İndirme tamamlandığında bildirim göster</span>
+              <small>Masaüstü bildirimi gönderir</small>
+            </div>
+            <input type="checkbox" id="chkNotify" class="cr-switch" />
+          </label>
+
+          <div class="cr-setting-row">
+            <div class="cr-setting-text">
+              <span>Görünüm</span>
+              <small>Chrome temasıyla otomatik eşleşir</small>
+            </div>
+            <select id="selTheme" class="cr-select">
+              <option value="system">Cihaz / Chrome varsayılanı</option>
+              <option value="dark">Koyu</option>
+              <option value="light">Açık</option>
+            </select>
+          </div>
+
+          <div class="cr-setting-row">
+            <div class="cr-setting-text">
+              <span>Klavye kısayolları</span>
+              <small>Balon: Alt+J • Tam sayfa: Alt+Shift+J</small>
+            </div>
+            <button id="btnOpenShortcuts" class="cr-outline-btn">Kısayollar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chrome GM3 Snackbar Toast -->
+    <div id="toast" class="cr-toast hidden"></div>
+  </div>
+
+  <script src="manager.js"></script>
+</body>
+</html>

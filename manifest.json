@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "İndirilenler",
+  "short_name": "İndirilenler",
+  "version": "1.2.0",
+  "homepage_url": "https://github.com/HolyZephyros/better-chrome-downloads",
+  "description": "Chrome Material 3 arayüzüyle birebir uyumlu gelişmiş indirme yöneticisi: tek tıkla bağlantı kopyalama ve tam kontrol.",
+  "minimum_chrome_version": "109",
+  "permissions": [
+    "downloads",
+    "downloads.open",
+    "downloads.ui",
+    "storage",
+    "alarms",
+    "contextMenus",
+    "notifications",
+    "clipboardWrite"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "İndirilenler (Alt+J)",
+    "default_popup": "manager.html?mode=popup",
+    "default_icon": {
+      "16": "icons/toolbar_dark16.png",
+      "24": "icons/toolbar_dark24.png",
+      "32": "icons/toolbar_dark32.png",
+      "48": "icons/toolbar_dark48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+J"
+      },
+      "description": "Son indirmeler penceresini aç"
+    },
+    "open-full-manager": {
+      "suggested_key": {
+        "default": "Alt+Shift+J"
+      },
+      "description": "Tüm indirme geçmişini sekmede aç"
+    }
+  }
+}

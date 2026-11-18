@@ -1,0 +1,1032 @@
+/* Authentic Google Chrome Material 3 (GM3) Design Tokens */
+:root,
+html[data-theme="dark"] {
+  --cr-page-bg: #1f1f1f;
+  --cr-bubble-bg: #28292a;
+  --cr-card-bg: #28292a;
+  --cr-card-border: transparent;
+  --cr-card-shadow: none;
+  --cr-search-bg: #28292a;
+  --cr-bubble-input-bg: #1f1f1f;
+  --cr-menu-bg: #2d2e30;
+  --cr-dialog-bg: #28292a;
+  --cr-hover: rgba(227, 227, 227, 0.08);
+  --cr-press: rgba(227, 227, 227, 0.13);
+  --cr-hairline: #3c4043;
+  --cr-outline: #5f6368;
+  --cr-text-primary: #e3e3e3;
+  --cr-text-secondary: #c4c7c5;
+  --cr-text-muted: #8e918f;
+  --cr-icon-color: #c4c7c5;
+  --cr-link: #a8c7fa;
+  --cr-primary: #a8c7fa;
+  --cr-on-primary: #062e6f;
+  --cr-tonal-bg: #004a77;
+  --cr-tonal-fg: #c2e7ff;
+  --cr-progress-track: #444746;
+  --cr-danger: #f28b82;
+  --cr-danger-btn-bg: #f28b82;
+  --cr-danger-btn-fg: #601410;
+  --cr-warning: #fdd663;
+  --cr-success: #81c995;
+  --cr-toast-bg: #323232;
+  --cr-toast-fg: #f1f3f4;
+  --cr-menu-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.35), 0 1px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="light"] {
+  --cr-page-bg: #ffffff;
+  --cr-bubble-bg: #ffffff;
+  --cr-card-bg: #ffffff;
+  --cr-card-border: #dadce0;
+  --cr-card-shadow: 0 1px 2px rgba(60, 64, 67, 0.1), 0 1px 3px 1px rgba(60, 64, 67, 0.06);
+  --cr-search-bg: #f0f4f9;
+  --cr-bubble-input-bg: #f0f4f9;
+  --cr-menu-bg: #ffffff;
+  --cr-dialog-bg: #ffffff;
+  --cr-hover: rgba(31, 31, 31, 0.06);
+  --cr-press: rgba(31, 31, 31, 0.11);
+  --cr-hairline: #e1e3e1;
+  --cr-outline: #747775;
+  --cr-text-primary: #1f1f1f;
+  --cr-text-secondary: #444746;
+  --cr-text-muted: #747775;
+  --cr-icon-color: #444746;
+  --cr-link: #0b57d0;
+  --cr-primary: #0b57d0;
+  --cr-on-primary: #ffffff;
+  --cr-tonal-bg: #d3e3fd;
+  --cr-tonal-fg: #041e49;
+  --cr-progress-track: #d3e3fd;
+  --cr-danger: #b3261e;
+  --cr-danger-btn-bg: #b3261e;
+  --cr-danger-btn-fg: #ffffff;
+  --cr-warning: #b06000;
+  --cr-success: #188038;
+  --cr-toast-bg: #303030;
+  --cr-toast-fg: #f2f2f2;
+  --cr-menu-shadow: 0 2px 6px 2px rgba(60, 64, 67, 0.15), 0 1px 2px 0 rgba(60, 64, 67, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--cr-text-primary);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+html.mode-popup,
+body.mode-popup {
+  width: 400px;
+  height: 480px;
+  min-height: 480px;
+  max-height: 480px;
+  background: var(--cr-bubble-bg);
+  overflow: hidden;
+}
+
+html.mode-tab,
+body.mode-tab {
+  min-height: 100vh;
+  height: auto;
+  background: var(--cr-page-bg);
+  overflow-y: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Native-feeling subtle scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(142, 145, 143, 0.35);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(142, 145, 143, 0.55);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.cr-app {
+  display: flex;
+  flex-direction: column;
+}
+
+body.mode-popup .cr-app {
+  width: 400px;
+  height: 480px;
+  overflow: hidden;
+}
+
+body.mode-tab .cr-app {
+  min-height: 100vh;
+}
+
+/* Chrome Circular Icon Button (cr-icon-button) */
+.cr-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--cr-icon-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.cr-icon-btn.small {
+  width: 28px;
+  height: 28px;
+}
+
+.cr-icon-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.cr-icon-btn.small svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cr-icon-btn:hover {
+  background: var(--cr-hover);
+  color: var(--cr-text-primary);
+}
+
+.cr-icon-btn:active {
+  background: var(--cr-press);
+}
+
+.cr-icon-btn.active-toggle {
+  background: var(--cr-tonal-bg);
+  color: var(--cr-tonal-fg);
+}
+
+.cr-icon-btn.copied-flash {
+  color: var(--cr-success) !important;
+  background: var(--cr-hover);
+}
+
+/* Chrome GM3 Pill Buttons */
+.cr-filled-btn,
+.cr-tonal-btn,
+.cr-outline-btn {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: filter 0.12s, background-color 0.12s;
+}
+
+.cr-filled-btn {
+  background: var(--cr-primary);
+  color: var(--cr-on-primary);
+  border: none;
+}
+.cr-filled-btn:hover {
+  filter: brightness(1.06);
+}
+.cr-filled-btn.danger {
+  background: var(--cr-danger-btn-bg);
+  color: var(--cr-danger-btn-fg);
+}
+
+.cr-tonal-btn {
+  background: var(--cr-tonal-bg);
+  color: var(--cr-tonal-fg);
+  border: none;
+}
+.cr-tonal-btn:hover {
+  filter: brightness(1.08);
+}
+
+.cr-outline-btn {
+  background: transparent;
+  color: var(--cr-link);
+  border: 1px solid var(--cr-outline);
+}
+.cr-outline-btn:hover {
+  background: var(--cr-hover);
+}
+
+.cr-outline-btn.compact,
+.cr-tonal-btn.compact {
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+/* =====================================================
+   POPUP HEADER & FOOTER (1:1 Chrome Download Bubble)
+   ===================================================== */
+.bubble-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 8px 16px;
+  flex-shrink: 0;
+}
+
+.bubble-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bubble-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cr-text-primary);
+  line-height: 20px;
+}
+
+.bubble-subtitle {
+  font-size: 11.5px;
+  color: var(--cr-link);
+  line-height: 16px;
+}
+
+.bubble-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.bubble-footer {
+  border-top: 1px solid var(--cr-hairline);
+  padding: 4px 0;
+  flex-shrink: 0;
+  background: var(--cr-bubble-bg);
+}
+
+.bubble-footer-btn {
+  width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  background: transparent;
+  color: var(--cr-text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.bubble-footer-btn:hover {
+  background: var(--cr-hover);
+}
+
+.bubble-footer-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--cr-icon-color);
+}
+
+/* =====================================================
+   TAB TOOLBAR (1:1 chrome://downloads cr-toolbar)
+   ===================================================== */
+.cr-toolbar {
+  height: 56px;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 680px) 1fr;
+  align-items: center;
+  gap: 16px;
+  background: var(--cr-page-bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.cr-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cr-page-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.cr-page-title {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  color: var(--cr-text-primary);
+}
+
+.cr-toolbar-center {
+  display: flex;
+  justify-content: center;
+}
+
+.cr-toolbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* Chrome Pill Search Bar */
+.cr-search-pill {
+  width: 100%;
+  height: 40px;
+  background: var(--cr-search-bg);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px 0 14px;
+  gap: 10px;
+  border: 1px solid transparent;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.cr-search-pill.compact {
+  height: 34px;
+  background: var(--cr-bubble-input-bg);
+  padding: 0 6px 0 12px;
+  gap: 8px;
+}
+
+.cr-search-pill:focus-within {
+  border-color: var(--cr-primary);
+}
+
+.cr-search-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--cr-icon-color);
+  flex-shrink: 0;
+}
+
+.cr-search-pill input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--cr-text-primary);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.cr-search-pill input::placeholder {
+  color: var(--cr-text-secondary);
+}
+
+/* =====================================================
+   FILTER SECTION & NEW DOWNLOAD DRAWER
+   ===================================================== */
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+body.mode-popup .filter-section {
+  padding: 2px 12px 8px;
+  border-bottom: 1px solid var(--cr-hairline);
+}
+
+body.mode-tab .filter-section {
+  max-width: 680px;
+  width: 100%;
+  margin: 8px auto 4px;
+  padding: 0 16px;
+}
+
+body.mode-tab .popup-search-wrap {
+  display: none;
+}
+
+.cr-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.cr-chip {
+  height: 28px;
+  padding: 0 11px;
+  border-radius: 8px;
+  border: 1px solid var(--cr-hairline);
+  background: transparent;
+  color: var(--cr-text-secondary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+}
+
+.cr-chip:hover {
+  background: var(--cr-hover);
+  color: var(--cr-text-primary);
+}
+
+.cr-chip.active {
+  background: var(--cr-tonal-bg);
+  border-color: transparent;
+  color: var(--cr-tonal-fg);
+}
+
+/* New URL Download Drawer */
+.new-dl-box {
+  flex-shrink: 0;
+}
+
+body.mode-popup .new-dl-box {
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid var(--cr-hairline);
+}
+
+body.mode-tab .new-dl-box {
+  max-width: 680px;
+  width: 100%;
+  margin: 8px auto;
+  padding: 0 16px;
+}
+
+.new-dl-inner {
+  background: var(--cr-card-bg);
+  border: 1px solid var(--cr-hairline);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+body.mode-popup .new-dl-inner {
+  background: var(--cr-bubble-input-bg);
+}
+
+.new-dl-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--cr-text-primary);
+}
+
+.new-dl-inner textarea,
+.new-dl-inner input {
+  width: 100%;
+  background: var(--cr-page-bg);
+  border: 1px solid var(--cr-hairline);
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: var(--cr-text-primary);
+  font-family: inherit;
+  font-size: 12.5px;
+  outline: none;
+  resize: vertical;
+}
+
+.new-dl-inner textarea:focus,
+.new-dl-inner input:focus {
+  border-color: var(--cr-primary);
+}
+
+.new-dl-foot {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* =====================================================
+   MAIN VIEWPORT & DOWNLOAD ITEMS
+   ===================================================== */
+.main-viewport {
+  position: relative;
+}
+
+body.mode-popup .main-viewport {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+body.mode-tab .main-viewport {
+  flex: 1 0 auto;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 6px 16px 48px;
+  overflow-y: visible;
+}
+
+/* Date Headers (visible in Tab mode like chrome://downloads) */
+.cr-date-header {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cr-text-secondary);
+  margin: 18px 0 8px 4px;
+}
+.cr-date-header:first-child {
+  margin-top: 8px;
+}
+
+/* -----------------------------------------------------
+   POPUP ITEM ROW (1:1 Chrome Download Bubble Row)
+   ----------------------------------------------------- */
+body.mode-popup .downloads-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+body.mode-popup .dl-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 6px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.1s ease;
+}
+
+body.mode-popup .dl-item:hover {
+  background: var(--cr-hover);
+}
+
+body.mode-popup .dl-icon-col {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+body.mode-popup .dl-icon-col img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+body.mode-popup .dl-content-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+body.mode-popup .dl-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cr-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.mode-popup .dl-name.can-open {
+  cursor: pointer;
+}
+body.mode-popup .dl-name.can-open:hover {
+  text-decoration: underline;
+}
+
+body.mode-popup .dl-name.is-deleted {
+  text-decoration: line-through;
+  color: var(--cr-text-muted);
+}
+
+body.mode-popup .dl-subline {
+  font-size: 11.8px;
+  color: var(--cr-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+body.mode-popup .dl-url-row-tab,
+body.mode-popup .dl-tab-pills {
+  display: none !important;
+}
+
+body.mode-popup .dl-quick-btns {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+/* -----------------------------------------------------
+   TAB ITEM CARD (1:1 chrome://downloads Card)
+   ----------------------------------------------------- */
+body.mode-tab .downloads-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body.mode-tab .dl-item {
+  background: var(--cr-card-bg);
+  border: 1px solid var(--cr-card-border);
+  box-shadow: var(--cr-card-shadow);
+  border-radius: 12px;
+  display: flex;
+  align-items: stretch;
+  min-height: 82px;
+  overflow: hidden;
+}
+
+body.mode-tab .dl-icon-col {
+  width: 64px;
+  border-right: 1px solid var(--cr-hairline);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 18px;
+  flex-shrink: 0;
+}
+
+body.mode-tab .dl-icon-col img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+body.mode-tab .dl-content-col {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 10px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+body.mode-tab .dl-name {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--cr-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.mode-tab .dl-name.can-open {
+  color: var(--cr-link);
+  cursor: pointer;
+}
+body.mode-tab .dl-name.can-open:hover {
+  text-decoration: underline;
+}
+
+body.mode-tab .dl-name.is-deleted {
+  text-decoration: line-through;
+  color: var(--cr-text-muted);
+}
+
+.dl-url-row-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.2px;
+  color: var(--cr-text-secondary);
+  min-width: 0;
+}
+
+.dl-raw-url {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  color: var(--cr-text-secondary);
+  user-select: text;
+}
+.dl-raw-url:hover {
+  color: var(--cr-link);
+  text-decoration: underline;
+}
+
+.dl-ref-tag {
+  flex-shrink: 0;
+  font-size: 11.5px;
+  color: var(--cr-text-muted);
+  cursor: pointer;
+}
+.dl-ref-tag:hover {
+  color: var(--cr-link);
+  text-decoration: underline;
+}
+
+body.mode-tab .dl-subline {
+  font-size: 12px;
+  color: var(--cr-text-secondary);
+  margin-top: 1px;
+}
+
+body.mode-tab .dl-tab-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+body.mode-tab .dl-tab-pills:empty {
+  display: none;
+}
+
+body.mode-tab .dl-quick-btns {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 10px 0 0;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* Shared Sub-elements inside Item */
+.dl-domain-inline {
+  cursor: pointer;
+}
+.dl-domain-inline:hover {
+  color: var(--cr-link);
+  text-decoration: underline;
+}
+
+.dl-ext-badge {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--cr-text-secondary);
+  text-transform: uppercase;
+}
+
+/* Chrome GM3 Linear Progress Bar */
+.cr-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--cr-progress-track);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.cr-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--cr-primary);
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+.cr-progress-bar.paused {
+  background: var(--cr-text-muted);
+}
+
+.cr-progress-bar.indeterminate {
+  width: 38% !important;
+  animation: crIndeterminate 1.25s infinite ease-in-out;
+}
+
+@keyframes crIndeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(270%); }
+}
+
+/* Empty State */
+.cr-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  height: 100%;
+  padding: 36px 24px;
+  color: var(--cr-text-muted);
+  gap: 10px;
+}
+
+.cr-empty-icon {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
+  opacity: 0.5;
+}
+
+.cr-empty-text {
+  font-size: 13.5px;
+  color: var(--cr-text-secondary);
+}
+
+/* =====================================================
+   CHROME ACTION MENU (cr-action-menu)
+   ===================================================== */
+.cr-menu {
+  position: fixed;
+  min-width: 220px;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  background: var(--cr-menu-bg);
+  border-radius: 8px;
+  box-shadow: var(--cr-menu-shadow);
+  padding: 6px 0;
+  z-index: 100;
+  border: 1px solid var(--cr-hairline);
+}
+
+.cr-menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--cr-text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  display: block;
+}
+
+.cr-menu-item:hover:not(:disabled) {
+  background: var(--cr-hover);
+}
+
+.cr-menu-item:disabled {
+  color: var(--cr-text-muted);
+  opacity: 0.5;
+  cursor: default;
+}
+
+.cr-danger-item {
+  color: var(--cr-danger) !important;
+}
+
+.cr-menu-hr {
+  height: 1px;
+  background: var(--cr-hairline);
+  margin: 5px 0;
+}
+
+/* =====================================================
+   CHROME GM3 DIALOGS & SETTINGS
+   ===================================================== */
+.cr-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 110;
+}
+
+.cr-dialog {
+  width: 100%;
+  max-width: 340px;
+  background: var(--cr-dialog-bg);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--cr-menu-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cr-dialog.wide {
+  max-width: 400px;
+}
+
+.cr-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cr-dialog-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cr-text-primary);
+}
+
+.cr-dialog-body {
+  font-size: 13px;
+  color: var(--cr-text-secondary);
+  word-break: break-word;
+}
+
+.cr-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.cr-settings-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cr-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cr-hairline);
+  cursor: pointer;
+}
+.cr-setting-row:last-child {
+  border-bottom: none;
+  padding-bottom: 2px;
+}
+
+.cr-setting-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cr-setting-text span {
+  font-size: 13px;
+  color: var(--cr-text-primary);
+}
+
+.cr-setting-text small {
+  font-size: 11.5px;
+  color: var(--cr-text-secondary);
+}
+
+.cr-switch {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--cr-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.cr-select {
+  background: var(--cr-page-bg);
+  color: var(--cr-text-primary);
+  border: 1px solid var(--cr-outline);
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-family: inherit;
+  font-size: 12.5px;
+  outline: none;
+}
+
+/* Chrome Snackbar Toast */
+.cr-toast {
+  position: fixed;
+  bottom: 14px;
+  left: 16px;
+  right: 16px;
+  max-width: 360px;
+  margin: 0 auto;
+  background: var(--cr-toast-bg);
+  color: var(--cr-toast-fg);
+  font-size: 12.5px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: var(--cr-menu-shadow);
+  z-index: 130;
+  pointer-events: none;
+}
